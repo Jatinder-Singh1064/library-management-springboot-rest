@@ -77,10 +77,12 @@ public class UserValidation {
 
 	private boolean doesUsernameExists(String username) {
 		Optional<User> user  = userRepository.findById(username);
-		if(user != null) {
-			return false;
+		if(user != null && !user.isEmpty()) {
+			System.out.println(user);
+			return true;
 		}
-		return true;
+		System.out.println(user);
+		return false;
 	}
 	
 }
