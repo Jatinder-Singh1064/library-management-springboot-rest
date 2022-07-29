@@ -3,28 +3,29 @@
 <head>
   <title>Punjabi Library</title>
   <meta charset="UTF-8">
-  <link th:href="@{../css/style.css}" rel="stylesheet" />
+  <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
   <h1>Welcome to Punjabi Library</h1>
   <fieldset>
 	  <legend>Register with Punjabi Library today</legend>
-	  <form th:action= "@{/confirmRegistration}" th:object="${user}" method ="post">
-	  	<p>Name: <input type = "text" th:field = "*{name}" /></p>
-	  	<p>Age: <input type = "number" th:field = "*{age}" /></p>
-	  	<p>Username: <input type = "text" th:field = "*{username}" /></p>
-	  	<p>Password: <input type = "password" th:field = "*{password}" /></p>
-	  	<p>Confirm Password: <input type = "password" th:field = "*{confirmPassword}" /></p>
-	  	<p>Profession: <input type = "text" th:field = "*{profession}" /></p>
-	  	<p>Address: <input type = "text" th:field = "*{address}" /></p>
-	  	<p>City: <input type = "text" th:field = "*{city}" /></p>
-	  	<p>State/Province: <input type = "text" th:field = "*{state}" /></p>
-	  	<p>Country: <input type = "text" th:field = "*{country}" /></p>
-	  	<p>Mobile: <input type = "number" th:field = "*{mobile}" /></p>
+	  <form th:action= "@{/verifyRegistration}" th:object="${registerUser}" method ="post">
+	  	<p>Name<span class = "mandatory">*</span>: <input type = "text" th:field = "*{name}" /></p>
+	  	<p>Age<span class = "mandatory">*</span>: <input type = "number" th:field = "*{age}" /></p>
+	  	<p>Username<span class = "mandatory">*</span>: <input type = "text" th:field = "*{username}" /></p>
+	  	<p>Password<span class = "mandatory">*</span>: <input type = "password" th:field = "*{password}" /></p>
+	  	<p>Confirm Password<span class = "mandatory">*</span>: <input type = "password" th:field = "*{confirmPassword}" /></p>
+	  	<p>Profession<span class = "mandatory">*</span>: <input type = "text" th:field = "*{profession}" /></p>
+	  	<p>Address<span class = "mandatory">*</span>: <input type = "text" th:field = "*{address}" /></p>
+	  	<p>City<span class = "mandatory">*</span>: <input type = "text" th:field = "*{city}" /></p>
+	  	<p>State/Province<span class = "mandatory">*</span>: <input type = "text" th:field = "*{state}" /></p>
+	  	<p>Country<span class = "mandatory">*</span>: <input type = "text" th:field = "*{country}" /></p>
+	  	<p>Mobile<span class = "mandatory">*</span>: <input type = "number" th:field = "*{mobile}" /></p>
 	  	<input type = "submit" value = "Register" />
+	  	<p class="error" th:text = "${errorMessage}"></p>
 	  </form>
 	  <br/>
-	  <a href = "home">Already have an account?</a>
+	  <a href = "/">Already have an account?</a>
   </fieldset>
 </body>
 </html>

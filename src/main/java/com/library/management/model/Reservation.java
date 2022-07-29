@@ -27,4 +27,7 @@ public class Reservation {
 	private String borrowDate;
 	private String returnDate;
 	
+	private double fine;
+	private String whoReserved;
+	
 }

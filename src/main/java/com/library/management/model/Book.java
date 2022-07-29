@@ -25,6 +25,8 @@ public class Book {
 	private String isbn;
 	private String title;
 	private String category;
+	private String author;
+	private String publisher;
 	private int	pageCount;
 	
 	// Defining relationship between 2 entities (Book and Reservation)
