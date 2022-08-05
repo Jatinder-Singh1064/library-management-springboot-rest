@@ -1,0 +1,21 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Punjabi Library</title>
+  <meta charset="UTF-8">
+  <link th:href="@{../css/style.css}" rel="stylesheet" />
+</head>
+<body>
+  <h1 th:text = "'Welcome ' + ${username}" ></h1>
+  <table>
+  	<tr>
+  		<td><a href = "/user/borrow">Borrowings</a></td>
+  		<td><a href = "/user/history">History</a></td>
+  	</tr>
+  	<tr>
+  		<td><a href = "/user/reserve">Reserve</a></td>
+  		<td><a href = "/user/reserve">Return</a></td>
+  	</tr>
+  </table>
+</body>
+</html>

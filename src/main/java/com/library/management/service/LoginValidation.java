@@ -13,6 +13,8 @@ public class LoginValidation {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	private String userType = "";
 	
 	public String validateUser(User user) {
 		String validity = "";
@@ -50,10 +52,17 @@ public class LoginValidation {
 	private boolean isValid(String username, String password) {
 		Optional<User> user  = userRepository.findById(username);
 		if(user != null && !user.isEmpty()) {
-			if(user.get().getPassword().equals(password))
-					return true;
+			if(user.get().getPassword().equals(password)) {
+				userType = user.get().getUserType();
+				return true;
+			}
 		}
 		return false;
+	}
+	
+
+	public String getUserType(User user) {
+		return userType;
 	}
 	
 }

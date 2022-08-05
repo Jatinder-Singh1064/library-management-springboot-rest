@@ -27,29 +27,16 @@ public class HomeController {
 	
 	private String validity ="";
 	
+	private String loginValidity = "";
+	
 	@GetMapping("/")
 	public String homepage(Model model) {
 		User loginUser = new User();
 		model.addAttribute("loginUser", loginUser);
-		model.addAttribute("errorMessage", validity);
+		model.addAttribute("errorMessage", loginValidity);
 		return "homepage";
 	}
 	
-	@PostMapping("/login")
-	public String login(@ModelAttribute("loginUser") User user, Model model) {
-		validity = loginValidation.validateUser(user);
-		
-		model.addAttribute("username", user.getUsername());
-		model.addAttribute("password", user.getPassword());
-		
-		if(validity.equals("success")) {
-			validity = "";
-			return "home";
-		}
-		else {
-			return "redirect:/";
-		}
-	}
 	
 	@GetMapping("/register")
 	public String register(Model model) {
@@ -73,6 +60,27 @@ public class HomeController {
 		}
 		else {
 			return "redirect:/register";
+		}
+	}
+	
+	@PostMapping("/findHomepage")
+	public String redirectToHomepage(@ModelAttribute("loginUser") User user, Model model) {
+		loginValidity = loginValidation.validateUser(user);
+		model.addAttribute("username", user.getUsername());
+		if(loginValidity.equals("success")) {
+			loginValidity = "";
+			String userType = loginValidation.getUserType(user);
+			System.out.println(userType);
+			if(userType.equals("customer")) {
+//				System.out.println(userType);
+				return "homepageUser";
+			}
+				
+			else
+				return "homepageAdmin";
+		}
+		else {
+			return "redirect:/";
 		}
 	}
 }
