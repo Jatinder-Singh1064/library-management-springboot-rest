@@ -1,0 +1,20 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Punjabi Library</title>
+  <meta charset="UTF-8">
+  <link th:href="@{../css/style.css}" rel="stylesheet" />
+</head>
+<body>
+  <h1 th:text = "'Welcome ' + ${username}" ></h1>
+  <table>
+  	<tr>
+  		<td><a href = "/admin/books">Books</a></td>
+  		<td><a href = "/admin/users">Users</a></td>
+  	</tr>
+  	<tr>
+  		<td><a href = "/admin/reservations">Reservations</a></td>
+  	</tr>
+  </table>
+</body>
+</html>

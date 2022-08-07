@@ -29,6 +29,8 @@ public class HomeController {
 	
 	private String loginValidity = "";
 	
+	static String username = "";
+	
 	@GetMapping("/")
 	public String homepage(Model model) {
 		User loginUser = new User();
@@ -66,6 +68,7 @@ public class HomeController {
 	@PostMapping("/findHomepage")
 	public String redirectToHomepage(@ModelAttribute("loginUser") User user, Model model) {
 		loginValidity = loginValidation.validateUser(user);
+		username = user.getUsername();
 		model.addAttribute("username", user.getUsername());
 		if(loginValidity.equals("success")) {
 			loginValidity = "";
