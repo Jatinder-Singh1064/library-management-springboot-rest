@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Home</title>
+</head>
+<body>
+
+    <div class="container">
+        <h2 th:text="${'Welcome' + ' ' + currentUser.firstName + ' ' + currentUser.lastName}"></h2>
+    </div>
+
+</body>
+</html>
