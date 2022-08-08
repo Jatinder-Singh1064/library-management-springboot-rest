@@ -17,12 +17,31 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	//	Method for getting all the students
-//	public List<User> getAllStudents() {
-//		List<Student> students = new ArrayList<>();
-//		students = (List<Student>) studentRepository.findAll();
-//		return students;
-//	}
+	//	Method for getting all the admin users
+	public List<User> getAllAdminUsers() {
+		List<User> users = new ArrayList<>();
+		List<User> adminUsers = new ArrayList<>();
+		users = (List<User>) userRepository.findAll();
+		for(User user:users) {
+			if(user.getUserType().equals("admin")) {
+				adminUsers.add(user);
+			}
+		}
+		return adminUsers;
+	}
+	
+	//	Method for getting all the customer users
+	public List<User> getAllCustomerUsers() {
+		List<User> users = new ArrayList<>();
+		List<User> customerUsers = new ArrayList<>();
+		users = (List<User>) userRepository.findAll();
+		for(User user:users) {
+			if(user.getUserType().equals("customer")) {
+				customerUsers.add(user);
+			}
+		}
+		return customerUsers;
+	}
 //	
 //	//	Method for getting student by id
 //	public Student getStudent(String id) {

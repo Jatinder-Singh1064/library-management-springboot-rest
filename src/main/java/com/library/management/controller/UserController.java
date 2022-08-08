@@ -1,5 +1,7 @@
 package com.library.management.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
+import com.library.management.model.Book;
 import com.library.management.model.User;
 import com.library.management.service.LoginValidation;
 import com.library.management.service.UserService;
@@ -29,20 +31,31 @@ public class UserController {
 	
 	private String loginValidity = "";
 	
-	@GetMapping("/user/getBorrowings")
-	public String getBorrowings(Model model) {
-		User loginUser = new User();
-		model.addAttribute("loginUser", loginUser);
-		model.addAttribute("errorMessage", loginValidity);
-		return "homepage";
+	@GetMapping("/admin/users/admin")
+	public String getAdminUsers(Model model) {
+		List<User> adminUsers = userService.getAllAdminUsers();
+		User adminUser = new User();
+		model.addAttribute("user", adminUser);
+		model.addAttribute("adminUsers", adminUsers);
+		model.addAttribute("username", HomeController.username);
+		if(HomeController.username.equals(""))
+			return "redirect:/";
+		else
+			return "admin/users/adminUsersAdmins";
 	}
 	
-	@GetMapping("/user/getHistory")
-	public String getHistory(Model model) {
-		User loginUser = new User();
-		model.addAttribute("loginUser", loginUser);
-		model.addAttribute("errorMessage", loginValidity);
-		return "homepage";
+	@GetMapping("/admin/users/customer")
+	public String getCustomerUsers(Model model) {
+		List<User> customerUsers = userService.getAllCustomerUsers();
+		User customerUser = new User();
+		model.addAttribute("user", customerUser);
+		model.addAttribute("customerUsers", customerUsers);
+//		System.out.println(customerUsers);
+		model.addAttribute("username", HomeController.username);
+		if(HomeController.username.equals(""))
+			return "redirect:/";
+		else
+			return "admin/users/adminUsersCustomers";
 	}
 	
 

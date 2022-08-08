@@ -36,7 +36,7 @@ public class HomeController {
 		User loginUser = new User();
 		model.addAttribute("loginUser", loginUser);
 		model.addAttribute("errorMessage", loginValidity);
-		return "homepage";
+		return "home/homepage";
 	}
 	
 	
@@ -45,7 +45,7 @@ public class HomeController {
 		User registerUser = new User();
 		model.addAttribute("registerUser", registerUser);
 		model.addAttribute("errorMessage", validity);
-		return "registration";
+		return "home/registration";
 	}
 
 	@PostMapping("/verifyRegistration")
@@ -58,7 +58,7 @@ public class HomeController {
 			validity ="";
 			user.setUserType("customer");
 			userService.addUser(user);
-			return "confirmRegistration";
+			return "home/confirmRegistration";
 		}
 		else {
 			return "redirect:/register";
@@ -69,21 +69,27 @@ public class HomeController {
 	public String redirectToHomepage(@ModelAttribute("loginUser") User user, Model model) {
 		loginValidity = loginValidation.validateUser(user);
 		username = user.getUsername();
-		model.addAttribute("username", user.getUsername());
+		model.addAttribute("username", username);
 		if(loginValidity.equals("success")) {
 			loginValidity = "";
 			String userType = loginValidation.getUserType(user);
 			System.out.println(userType);
 			if(userType.equals("customer")) {
 //				System.out.println(userType);
-				return "homepageUser";
+				return "home/homepageUser";
 			}
 				
 			else
-				return "homepageAdmin";
+				return "home/homepageAdmin";
 		}
 		else {
 			return "redirect:/";
 		}
+	}
+	
+	@GetMapping("/logout")
+	public String logout(Model model) {
+		username="";
+		return "redirect:/";
 	}
 }

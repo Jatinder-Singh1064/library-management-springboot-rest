@@ -1,0 +1,44 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Punjabi Library</title>
+	<meta charset="UTF-8">
+	<link th:href="@{../css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div th:replace="Fragments/header :: header(${username})"></div>
+	
+	<h1>List of Customers</h1>
+	<table border ="1" >
+		<tr>
+			<th>Name</th>
+			<th>Username</th>
+			<th>Address</th>
+			<th>City</th>
+			<th>State</th>
+			<th>Country</th>
+			<th>Age</th>
+			<th>Mobile</th>
+			<th>Profession</th>
+			<th colspan="2">Action</th>
+		</tr>
+		<tr th:each="customer: ${customerUsers}">
+			<td th:text="${customer.name}" />
+			<td th:text="${customer.username}" />
+			<td th:text="${customer.address}" />
+			<td th:text="${customer.city}" />
+			<td th:text="${customer.state}" />
+			<td th:text="${customer.country}" />
+			<td th:text="${customer.age}" />
+			<td th:text="${customer.mobile}" />
+			<td th:text="${customer.profession}" />
+			<td><a th:href = "|admin/user/customer/modifyUser?username=${customer.username}|">Modify</td>
+			<td><a th:href = "|admin/user/customer/DeleteUser?username=${customer.username}|">Delete</td>
+		</tr>
+	</table>
+	<div th:replace="Fragments/footer :: footer"></div>
+	
+</body>
+
+</html>

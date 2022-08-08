@@ -8,6 +8,6 @@ import com.library.management.model.Book;
 
 
 @Repository
-public interface BookRepository extends CrudRepository<Book, String> {
+public interface BookRepository extends CrudRepository<Book, Integer> {
 
 }

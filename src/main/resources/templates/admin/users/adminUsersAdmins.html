@@ -1,0 +1,44 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Punjabi Library</title>
+	<meta charset="UTF-8">
+	<link th:href="@{../css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div th:replace="Fragments/header :: header(${username})"></div>
+	
+	<h1>List of Admins</h1>
+	<table border ="1" >
+		<tr>
+			<th>Name</th>
+			<th>Username</th>
+			<th>Address</th>
+			<th>City</th>
+			<th>State</th>
+			<th>Country</th>
+			<th>Age</th>
+			<th>Mobile</th>
+			<th>Profession</th>
+			<th colspan="2">Action</th>
+		</tr>
+		<tr th:each="admin: ${adminUsers}">
+			<td th:text="${admin.name}" />
+			<td th:text="${admin.username}" />
+			<td th:text="${admin.address}" />
+			<td th:text="${admin.city}" />
+			<td th:text="${admin.state}" />
+			<td th:text="${admin.country}" />
+			<td th:text="${admin.age}" />
+			<td th:text="${admin.mobile}" />
+			<td th:text="${admin.profession}" />
+			<td><a th:href = "|admin/user/admin/modifyUser?username=${admin.username}|">Modify</td>
+			<td><a th:href = "|admin/user/admin/DeleteUser?username=${admin.username}|">Delete</td>
+		</tr>
+	</table>
+	<div th:replace="Fragments/footer :: footer"></div>
+	
+</body>
+
+</html>

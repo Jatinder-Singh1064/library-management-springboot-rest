@@ -1,0 +1,44 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script th:inline="javascript">
+var greeter = function() {
+    if(!(confirm('Are you sure you want to delete this employee ?') )) return false;
+    else return true;
+   }
+</script>
+<head>
+	<title>Punjabi Library</title>
+	<meta charset="UTF-8">
+	<link th:href="@{../css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div th:replace="Fragments/header :: header(${username})"></div>
+	<div th:replace="admin/books/addBookForm :: addBookForm(${book})"></div>
+	<h1>List of Books</h1>
+	<table border ="1" >
+		<tr>
+			<th>Title</th>
+			<th>Category</th>
+			<th>Author</th>
+			<th>Publisher</th>
+			<th>Page Count</th>
+			<th>ISBN</th>
+			<th colspan="2">Action</th>
+		</tr>
+		<tr th:each="book: ${books}">
+			<td th:text="${book.title}" />
+			<td th:text="${book.category}" />
+			<td th:text="${book.author}" />
+			<td th:text="${book.publisher}" />
+			<td th:text="${book.pageCount}" />
+			<td th:text="${book.isbn}" />
+			<td><a th:href = "|books/modifyBook?bookId=${book.resourceId}|">Modify</td>
+			<td><a th:href = "|books/deleteBook?bookId=${book.resourceId}|">Delete</td>
+		</tr>
+	</table>
+	<div th:replace="Fragments/footer :: footer"></div>
+	
+</body>
+
+</html>

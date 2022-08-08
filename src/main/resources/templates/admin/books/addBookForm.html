@@ -6,7 +6,7 @@
   <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
-  <h1>Welcome to Punjabi Library</h1>
+  <div th:fragment="addBookForm(book)">
   <fieldset>
 	  <legend>Add a book</legend>
 	  <form th:action= "@{/admin/books/confirmation}" th:object="${book}" method ="post">
@@ -19,7 +19,7 @@
 	  	<input type = "submit" value = "Add Book" />
 	  </form>
 	  <br/>
-	  <a href = "/admin/books">Go Back</a>
   </fieldset>
+  </div>
 </body>
 </html>

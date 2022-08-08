@@ -6,7 +6,7 @@
   <link th:href="@{../css/style.css}" rel="stylesheet" />
 </head>
 <body>
-  <h1>Welcome to Punjabi Library</h1>
+  <div th:replace="Fragments/header :: header(${username})"></div>
   <h2>You have successfully added book into Punjabi Library</h2>
   <a href = "/admin/books">Go back</a>
 </body>

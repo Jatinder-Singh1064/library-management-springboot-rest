@@ -6,7 +6,7 @@
   <link th:href="@{../css/style.css}" rel="stylesheet" />
 </head>
 <body>
-  <h1 th:text = "'Welcome ' + ${username}" ></h1>
+<div th:replace="Fragments/header :: header(${username})"></div>
   <table>
   	<tr>
   		<td><a href = "/admin/books">Books</a></td>
