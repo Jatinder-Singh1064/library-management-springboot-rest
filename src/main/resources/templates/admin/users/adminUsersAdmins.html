@@ -8,7 +8,7 @@
 
 <body>
 	<div th:replace="Fragments/header :: header(${username})"></div>
-	
+	<a th:href = "|addUser?userType=admin|">Add user</a>
 	<h1>List of Admins</h1>
 	<table border ="1" >
 		<tr>
@@ -33,8 +33,8 @@
 			<td th:text="${admin.age}" />
 			<td th:text="${admin.mobile}" />
 			<td th:text="${admin.profession}" />
-			<td><a th:href = "|admin/user/admin/modifyUser?username=${admin.username}|">Modify</td>
-			<td><a th:href = "|admin/user/admin/DeleteUser?username=${admin.username}|">Delete</td>
+			<td><a th:href = "|modifyUser?username=${admin.username}|">Modify</td>
+			<td><a th:href = "|DeleteUser?username=${admin.username}|">Delete</td>
 		</tr>
 	</table>
 	<div th:replace="Fragments/footer :: footer"></div>

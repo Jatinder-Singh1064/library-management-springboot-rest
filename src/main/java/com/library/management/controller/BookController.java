@@ -55,6 +55,8 @@ public class BookController {
 	
 	@GetMapping("admin/books/modifyBook")
 	public String modifyBook(@RequestParam(value = "bookId", required = true) String bookId, Model model) {
+		Book book = bookService.getBookById(Integer.parseInt(bookId));
+		model.addAttribute("book", book);
 		model.addAttribute("username", HomeController.username);
 		if(HomeController.username.equals(""))
 			return "redirect:/";

@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.library.management.model.Book;
 import com.library.management.model.User;
 import com.library.management.repository.UserRepository;
 
@@ -16,6 +17,12 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	//	Method for getting user by id
+	public User getUserById(String id) {
+		Optional<User> user = userRepository.findById(id);
+		return user.orElseGet(null);
+	}
 	
 	//	Method for getting all the admin users
 	public List<User> getAllAdminUsers() {
@@ -42,27 +49,26 @@ public class UserService {
 		}
 		return customerUsers;
 	}
-//	
-//	//	Method for getting student by id
-//	public Student getStudent(String id) {
-//		Optional<Student> student = studentRepository.findById(id);
-//		return student.orElseGet(null);
-//	}
+	
+//	Deleting a user by username
+	public String deleteAdminUser(String id) {
+		User user = getUserById(id);
+		userRepository.deleteById(id);
+		return user.getUserType();
+	}
 	
 	// 	Method for adding a student into database
 	public void addUser(User user) {
 		userRepository.save(user);
 	}
 	
-	//	Method for updating student into database (only if it exists)
-//	public Student updateStudent(String id, Student student) {
-//		Optional<Student> student1  = studentRepository.findById(id);
-//		if(student1 != null) {
-//			studentRepository.save(student);
-//		}
-//		Optional<Student> student2 = studentRepository.findById(id);
-//		return student2.orElseGet(null);
-//	}
+	public void updateUserById(User updatedUser) {
+		// TODO Auto-generated method stub
+//		int resourceId = updatedBook.getResourceId();
+		
+		userRepository.save(updatedUser);
+		
+	}
 //	
 //	//	Deleting a student by id
 //	public void deleteStudent(String id) {

@@ -65,7 +65,7 @@ public class HomeController {
 		}
 	}
 	
-	@PostMapping("/findHomepage")
+	@PostMapping("/home")
 	public String redirectToHomepage(@ModelAttribute("loginUser") User user, Model model) {
 		loginValidity = loginValidation.validateUser(user);
 		username = user.getUsername();

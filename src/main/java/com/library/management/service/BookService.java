@@ -26,7 +26,7 @@ public class BookService {
 		return books;
 	}
 	
-	//	Method for getting student by id
+	//	Method for getting book by id
 	public Book getBookById(int id) {
 		Optional<Book> student = bookRepository.findById(id);
 		return student.orElseGet(null);
