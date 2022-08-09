@@ -33,13 +33,13 @@ public class Book {
 	private int	pageCount;
 	
 	// Defining relationship between 2 entities (Book and Reservation)
-//	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	
 	// Join column with other table
-//	@JoinColumn(name = "resourceId")
+	@JoinColumn(name = "resourceId")
 	
 	// Column which is ignored in the output
-//	@JsonIgnore
-//	private List<Reservation> reservations;
+	@JsonIgnore
+	private List<Reservation> reservations;
 	
 }

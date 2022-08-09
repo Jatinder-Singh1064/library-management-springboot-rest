@@ -1,0 +1,49 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Punjabi Library</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+<div th:replace="Fragments/header :: header(${username})"></div>
+	<fieldset>
+		<legend>Reserving a book</legend>
+		<form th:action="@{/admin/reserve/getBooks}" th:object="${book}" method="post">
+			<p>ISBN: <input type="text" th:field="*{isbn}" /></p>
+			<p>Title: <input type="text" th:field="*{title}" /></p>
+			<p>Category: <input type="text" th:field="*{category}" /></p>
+			<p>Author: <input type="text" th:field="*{author}" /></p>
+			<p>Publisher: <input type="text" th:field="*{publisher}" /></p>
+			<input type="submit" value="Next" />
+			<p class="error" th:text = "${errorMessage}"></p>
+		</form>
+		<table border = "1">
+		<tr>
+			<th>Title</th>
+			<th>Category</th>
+			<th>Author</th>
+			<th>Publisher</th>
+			<th>Page Count</th>
+			<th>ISBN</th>
+			<th colspan="2">Action</th>
+		</tr>
+		<tr th:each="book: ${books}">
+			<td th:text="${book.title}" />
+			<td th:text="${book.category}" />
+			<td th:text="${book.author}" />
+			<td th:text="${book.publisher}" />
+			<td th:text="${book.pageCount}" />
+			<td th:text="${book.isbn}" />
+			<td><a th:href = "|books/modifyBook?bookId=${book.resourceId}|">Modify</td>
+			<td><a th:href = "|books/deleteBook?bookId=${book.resourceId}|">Delete</td>
+		</tr>
+	</table>
+		<br />
+	</fieldset>
+	</div>
+	<div th:replace="Fragments/footer :: footer"></div>
+</body>
+</html>

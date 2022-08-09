@@ -31,6 +31,8 @@ public class HomeController {
 	
 	static String username = "";
 	
+	static String errorMessage = "";
+	
 	@GetMapping("/")
 	public String homepage(Model model) {
 		User loginUser = new User();
@@ -90,6 +92,7 @@ public class HomeController {
 	@GetMapping("/logout")
 	public String logout(Model model) {
 		username="";
+		errorMessage ="";
 		return "redirect:/";
 	}
 }

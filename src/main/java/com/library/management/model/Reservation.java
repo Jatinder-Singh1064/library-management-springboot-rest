@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import lombok.Data;
 
@@ -21,7 +22,7 @@ public class Reservation {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int transactionId;
 	
-	private String studentId;
+	private String username;
 	private String resourceId;
 	
 	private String borrowDate;
@@ -29,5 +30,15 @@ public class Reservation {
 	
 	private double fine;
 	private String whoReserved;
+	
+//	@Transient
+//	private String isbnRequested;
+//	
+//	public Reservation(String username, String isbnRequested){
+//		this.username = username;
+//		this.isbnRequested = isbnRequested;
+//	}
+	
+	
 	
 }

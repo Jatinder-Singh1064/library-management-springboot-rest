@@ -1,9 +1,15 @@
 package com.library.management.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -27,10 +33,8 @@ public class User {
 	private String country;
 	private int mobile;
 
-	
-	
-	public User(int userId, String name, int age, String username, String password, String confirmPassword, String profession, String address,
-			String city, String state, String country, int mobile) {
+	public User(int userId, String name, int age, String username, String password, String confirmPassword,
+			String profession, String address, String city, String state, String country, int mobile) {
 		this.name = name;
 		this.age = age;
 		this.username = username;
@@ -51,5 +55,15 @@ public class User {
 
 	public User() {
 	}
+
+	// Defining relationship between 2 entities (Student and Reservation)
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
+
+	// Join column with other table
+	@JoinColumn(name = "username")
+
+	// Column which is ignored in the output
+	@JsonIgnore
+	private List<Reservation> reservations;
 
 }

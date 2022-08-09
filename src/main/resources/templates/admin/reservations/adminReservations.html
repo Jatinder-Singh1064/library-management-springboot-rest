@@ -6,15 +6,33 @@
   <link th:href="@{../css/style.css}" rel="stylesheet" />
 </head>
 <body>
-  <h1 th:text = "'Welcome ' + ${username}" ></h1>
-  <table>
-  	<tr>
-  		<td><a href = "/admin/books">Books</a></td>
-  		<td><a href = "/admin/users">Users</a></td>
-  	</tr>
-  	<tr>
-  		<td><a href = "/admin/reservations">Reservations</a></td>
-  	</tr>
-  </table>
+  <div th:replace="Fragments/header :: header(${username})"></div>
+   <p><a th:href = "@{/admin/reserve/checkUser}">Reserve book</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <a th:href = "@{/admin/reservations/return}">Return book</a></p>
+  	<h1>List of Reservations</h1>
+	<table border ="1" >
+		<tr>
+			<th>Transaction Id</th>
+			<th>Username</th>
+			<th>Resource Id</th>
+			<th>Borrow date</th>
+			<th>Return date</th>
+			<th>Fine</th>
+			<th>Who Reserved</th>
+			<th colspan="2">Action</th>
+		</tr>
+		<tr th:each="reservation: ${reservations}">
+			<td th:text="${reservation.transactionId}" />
+			<td th:text="${reservation.username}" />
+			<td th:text="${reservation.resourceId}" />
+			<td th:text="${reservation.borrowDate}" />
+			<td th:text="${reservation.returnDate}" />
+			<td th:text="${reservation.fine}" />
+			<td th:text="${reservation.WhoReserved}" />
+			<td><a th:href = "|reservations/modifyReservations?transactionId=${reservation.transactionId}|">Modify</td>
+			<td><a th:href = "|reservations/deleteReservations?transactionId=${reservation.transactionId}|">Delete</td>
+		</tr>
+	</table>
+	<div th:replace="Fragments/footer :: footer"></div>
 </body>
 </html>

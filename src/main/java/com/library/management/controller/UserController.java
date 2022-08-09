@@ -11,23 +11,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.library.management.model.Book;
 import com.library.management.model.User;
-import com.library.management.service.LoginValidation;
 import com.library.management.service.UserService;
-import com.library.management.service.UserValidation;
 
 @Controller
 public class UserController {
 
-	@Autowired
-	private UserValidation userValidation;
 	
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private LoginValidation loginValidation;
 	
 	private static String userType ="";
 	
@@ -128,7 +121,10 @@ public class UserController {
 		User loginUser = new User();
 		model.addAttribute("loginUser", loginUser);
 		model.addAttribute("errorMessage", loginValidity);
-		return "homepage";
+		if(HomeController.username.equals(""))
+			return "redirect:/";
+		else
+			return "homepage";
 	}
 	
 	@GetMapping("/user/return")
@@ -136,7 +132,10 @@ public class UserController {
 		User loginUser = new User();
 		model.addAttribute("loginUser", loginUser);
 		model.addAttribute("errorMessage", loginValidity);
-		return "homepage";
+		if(HomeController.username.equals(""))
+			return "redirect:/";
+		else
+			return "homepage";
 	}
 
 }
