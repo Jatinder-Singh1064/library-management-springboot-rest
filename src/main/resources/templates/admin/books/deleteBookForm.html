@@ -1,0 +1,21 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Punjabi Library</title>
+  <meta charset="UTF-8">
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+  <h1>Welcome to Punjabi Library</h1>
+    <div th:replace="Fragments/header :: header(${userId})"></div>
+  <fieldset>
+	  <legend>Delete Book</legend>
+	  <form th:action= "@{/admin/books/deleteConfirmation}" th:object="${deleteBook}" method ="post">
+	  	<p>Book Id<span class = "mandatory">*</span>: <input type = "text" th:field = "*{bookId}" /></p>
+	  	<input type = "submit" value = "Delete" />
+	  </form>
+	  <br/>
+	  <a href = "/admin/books">Go Back</a>
+  </fieldset>
+</body>
+</html>

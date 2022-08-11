@@ -1,0 +1,28 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Punjabi Library</title>
+  <meta charset="UTF-8">
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+  <h1>Welcome to Punjabi Library</h1>
+  <fieldset>
+	  <legend>Register with Punjabi Library</legend>
+	  <form th:action= "@{/verifyRegistration}" th:object="${registerUser}" method ="post">
+	  	<p>UserId<span class = "mandatory">*</span>: <input type = "email" th:field = "*{userId}" /></p>
+	  	<p>Password<span class = "mandatory">*</span>: <input type = "password" th:field = "*{password}" /></p>
+	  	<p>Confirm Password<span class = "mandatory">*</span>: <input type = "password" th:field = "*{confirmPassword}" /></p>	  	
+	  	<p>FullName<span class = "mandatory">*</span>: <input type = "text" th:field = "*{fullName}" /></p>
+	  	<p>Age: <input type = "number" th:field = "*{age}" /></p>	  		  
+	  	<p>Profession: <input type = "text" th:field = "*{profession}" /></p>
+	  	<p>Address<span class = "mandatory">*</span>: <input type = "text" th:field = "*{address}" /></p>	  	
+	  	<p>Mobile: <input type = "number" th:field = "*{mobile}" /></p>
+	  	<input type = "submit" value = "Register" />
+	  	<p class="error" th:text = "${errorMessage}"></p>
+	  </form>
+	  <br/>
+	  <a href = "/">Already have an account?</a>
+  </fieldset>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Punjabi Library</title>
+  <meta charset="UTF-8">
+  <link th:href="@{../css/style.css}" rel="stylesheet" />
+</head>
+<body>
+  <div th:replace="Fragments/header :: header(${userId})"></div>
+  <h2>User added successfully into the system.</h2>
+  <a th:href = "@{'/admin/users/' + ${userType}}">Go back</a>
+</body>
+</html>

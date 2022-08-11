@@ -1,0 +1,16 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Punjabi Library</title>
+	<meta charset="UTF-8">
+	<link th:href="@{../css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div th:replace="Fragments/header :: header(${userId})"></div>
+	<p><a href = "/admin/users/admin">Admin</a></p>
+	<p><a href = "/admin/users/customer">Customer</a></p>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <title>Punjabi Library</title>
+  <meta charset="UTF-8">
+  <link th:href="@{../css/style.css}" rel="stylesheet" />
+  </head>
+  <body>
+    <div th:fragment="header(userId)">
+    <h1>Library Management System</h1>
+     	<p><h3 th:text = "'Hi ' + ${userId}" ></h3><a href="/logout" >Logout</a></p>
+    </div>
+  </body>
+</html>

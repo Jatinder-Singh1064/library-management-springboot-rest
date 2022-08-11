@@ -1,0 +1,23 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Punjabi Library</title>
+  <meta charset="UTF-8">
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+ <!--  <div th:fragment="addBookForm(book)"> -->
+  <fieldset>
+	  <legend>Add New Book</legend>
+	  <form th:action= "@{/admin/books/confirmation}" th:object="${book}" method ="post">
+	  	<p>ISBN<span class = "mandatory">*</span>: <input type = "text" th:field = "*{isbn}" /></p>
+	  	<p>Title<span class = "mandatory">*</span>: <input type = "text" th:field = "*{title}" /></p>
+	  	<p>Category<span class = "mandatory">*</span>: <input type = "text" th:field = "*{category}" /></p>
+	  	<p>Author<span class = "mandatory">*</span>: <input type = "text" th:field = "*{author}" /></p>	  		 
+	  	<input type = "submit" value = "Add Book" />
+	  </form>
+	  <br/>
+  </fieldset>
+  </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Punjabi Library</title>
+  <meta charset="UTF-8">
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+  <div th:fragment="addBookForm(book)">
+  <fieldset>
+	  <legend>Add New User</legend>
+	  <form th:action= "@{/admin/users/addUserConfirmation}" th:object="${user}" method ="post">
+	  	<p>UserId<span class = "mandatory">*</span>: <input type = "email" th:field = "*{userId}" /></p>
+	  	<p>Password<span class = "mandatory">*</span>: <input type = "password" th:field = "*{password}" /></p>
+	  	<p>Confirm Password<span class = "mandatory">*</span>: <input type = "password" th:field = "*{confirmPassword}" /></p>
+	  	<p>FullName<span class = "mandatory">*</span>: <input type = "text" th:field = "*{fullName}" /></p>
+	  	<p>Age: <input type = "number" th:field = "*{age}" /></p>	  
+	  	<p>Profession: <input type = "text" th:field = "*{profession}" /></p>
+	  	<p>Address<span class = "mandatory">*</span>: <input type = "text" th:field = "*{address}" /></p>	  	
+	  	<p>Mobile: <input type = "number" th:field = "*{mobile}" /></p>
+	  	<input type = "submit" value = "Add User" />
+	  	<p class="error" th:text = "${errorMessage}"></p>
+	  </form>
+	  <br/>
+  </fieldset>
+  </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Punjabi Library</title>
+	<meta charset="UTF-8">
+	<link th:href="@{../css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div th:replace="Fragments/header :: header(${userId})"></div>
+	<a th:href = "|addUser?userType=admin|">Add New User</a>
+	<h1>Admins List</h1>
+	<table border ="1" >
+		<tr>
+			<th>UserId</th>
+			<th>FullName</th>			
+			<th>Address</th>
+			<th>Age</th>
+			<th>Mobile</th>
+			<th>Profession</th>
+			<th colspan="2">Action</th>
+		</tr>
+		<tr th:each="admin: ${adminUsers}">
+			<td th:text="${admin.userId}" />
+			<td th:text="${admin.fullName}" />
+			<td th:text="${admin.address}" />
+			<td th:text="${admin.age}" />
+			<td th:text="${admin.mobile}" />
+			<td th:text="${admin.profession}" />
+			<td><a th:href = "|modifyUser?userId=${admin.userId}|">Modify</td>
+			<td><a th:href = "|DeleteUser?userId=${admin.userId}|">Delete</td>
+		</tr>
+	</table>
+	<div th:replace="Fragments/footer :: footer"></div>
+	
+</body>
+
+</html>
