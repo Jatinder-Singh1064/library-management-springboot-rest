@@ -7,16 +7,17 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.library.management.model.Book;
 import com.library.management.model.User;
 import com.library.management.repository.UserRepository;
 
 @Service
 public class UserService {
 
-
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private ReservationService reservationService;
 	
 	//	Method for getting user by id
 	public User getUserById(String id) {
@@ -51,9 +52,11 @@ public class UserService {
 	}
 	
 //	Deleting a user by username
-	public String deleteAdminUser(String id) {
-		User user = getUserById(id);
-		userRepository.deleteById(id);
+	public String deleteUser(String username) {
+		User user = getUserById(username);
+		if(!reservationService.isCustomerActive(username)){
+			userRepository.deleteById(username);
+		}
 		return user.getUserType();
 	}
 	
@@ -65,16 +68,8 @@ public class UserService {
 	public void updateUserById(User updatedUser) {
 		// TODO Auto-generated method stub
 //		int resourceId = updatedBook.getResourceId();
-		
-		userRepository.save(updatedUser);
-		
+		if(!reservationService.isCustomerActive(updatedUser.getUsername())){
+			userRepository.save(updatedUser);
+		}
 	}
-//	
-//	//	Deleting a student by id
-//	public void deleteStudent(String id) {
-//		Optional<Student> student  = studentRepository.findById(id);
-//		if(student != null) {
-//			studentRepository.deleteById(id);
-//		}
-//	}
 }

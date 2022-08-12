@@ -22,6 +22,7 @@ public class BookController {
 	
 	@GetMapping("/admin/books/addBook")
 	public String addBook(Model model) {
+		AdminController.message = "";
 		Book book = new Book();
 		model.addAttribute("book", book);
 		model.addAttribute("username", HomeController.username );
@@ -33,6 +34,7 @@ public class BookController {
 	
 	@PostMapping("/admin/books/confirmation")
 	public String confirmAddBook(@ModelAttribute("book") Book book, Model model) {
+		AdminController.message = "";
 		bookService.addBook(book);
 		model.addAttribute("username", HomeController.username);
 		if(HomeController.username.equals(""))
@@ -43,7 +45,7 @@ public class BookController {
 	
 	@GetMapping("admin/books/deleteBook")
 	public String deleteBook(@RequestParam(value = "bookId", required = true) String bookId, Model model) {
-		bookService.deleteBook(Integer.parseInt(bookId));
+		AdminController.message = bookService.deleteBook(Integer.parseInt(bookId));
 		model.addAttribute("username", HomeController.username);
 		if(HomeController.username.equals(""))
 			return "redirect:/";
@@ -53,6 +55,7 @@ public class BookController {
 	
 	@GetMapping("admin/books/modifyBook")
 	public String modifyBook(@RequestParam(value = "bookId", required = true) String bookId, Model model) {
+		AdminController.message = "";
 		Book book = bookService.getBookById(Integer.parseInt(bookId));
 		model.addAttribute("book", book);
 		model.addAttribute("username", HomeController.username);
@@ -65,7 +68,7 @@ public class BookController {
 	@PostMapping("/admin/books/updateBook/{resourceId}")
 	public String updateBook(@PathVariable("resourceId") String resourceId, @ModelAttribute("book") Book book, Model model) {
 		book.setResourceId(Integer.parseInt(resourceId));
-		bookService.updateBookById(book);
+		AdminController.message = bookService.updateBookById(book);
 		model.addAttribute("username", HomeController.username);
 		if(HomeController.username.equals(""))
 			return "redirect:/";

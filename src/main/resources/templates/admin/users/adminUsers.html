@@ -2,15 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Punjabi Library</title>
+	<title>Humber Library</title>
 	<meta charset="UTF-8">
-	<link th:href="@{../css/style.css}" rel="stylesheet" />
+	<link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 
 <body>
 	<div th:replace="Fragments/header :: header(${username})"></div>
-	<p><a href = "/admin/users/admin">Admin</a></p>
-	<p><a href = "/admin/users/customer">Customer</a></p>
+	<br>
+	<div th:replace="admin/users/navbars/navbar :: navbar"></div>
+	<br>
+	<div id="main">
+		<div class="container-2">
+			<ul id="user-menu-list">
+				<li class="user-menu"><a class="link-3" href="/admin/users/admin">Admin</a></li>
+				<li class="user-menu"><a class="link-3" href="/admin/users/customer">Customer</a></li>
+			</ul>
+		</div>
+		<div th:replace="Fragments/footer :: footer"></div>
+	</div>
 </body>
 
 </html>

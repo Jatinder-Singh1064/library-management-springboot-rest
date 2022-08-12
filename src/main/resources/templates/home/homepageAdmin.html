@@ -1,20 +1,25 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <title>Punjabi Library</title>
-  <meta charset="UTF-8">
-  <link th:href="@{../css/style.css}" rel="stylesheet" />
+	<title>Humber Library</title>
+	<meta charset="UTF-8">
+	<link th:href="@{../css/style.css}" rel="stylesheet" />
 </head>
+
 <body>
-<div th:replace="Fragments/header :: header(${username})"></div>
-  <table>
-  	<tr>
-  		<td><a href = "/admin/books">Books</a></td>
-  		<td><a href = "/admin/users">Users</a></td>
-  	</tr>
-  	<tr>
-  		<td><a href = "/admin/reservations">Reservations</a></td>
-  	</tr>
-  </table>
+	<div th:replace="Fragments/header :: header(${username})"></div>
+	<br>
+	<div id="main">
+		<div class="container-2">
+			<ul id="admin-menu-list">
+				<li class="admin-menu"><a class="link-3" href="/admin/books">Books</a></li>
+				<li class="admin-menu"><a class="link-3" href="/admin/users">Users</a></li>
+				<li class="admin-menu"><a class="link-3" href="/admin/reservations">Reservations</a></li>
+			</ul>
+		</div>
+		<div th:replace="Fragments/footer :: footer"></div>
+	</div>
 </body>
+
 </html>

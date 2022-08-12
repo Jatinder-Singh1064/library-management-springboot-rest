@@ -15,8 +15,8 @@
 	<div id="main">
 		<div class="container-2">
 			<fieldset>
-				<legend>Reserving a book</legend>
-				<form th:action="@{/admin/reserve/checkUser}" th:object="${user}" method="post">
+				<legend>Returning a book</legend>
+				<form th:action="@{/admin/return/checkUser}" th:object="${user}" method="post">
 					<p>Username<span class="mandatory">*</span>: <input type="text" th:field="*{username}" /></p>
 					<input class="button" type="submit" value="Next" />
 				</form>
@@ -27,6 +27,7 @@
 		</div>
 		<div th:replace="Fragments/footer :: footer"></div>
 	</div>
+</body>
 </body>
 
 </html>

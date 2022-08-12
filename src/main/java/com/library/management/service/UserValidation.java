@@ -13,10 +13,10 @@ public class UserValidation {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	public String validateUser(User user) {
 		String validity = "";
-		
+
 		String name = user.getName();
 		int age = user.getAge();
 		String username = user.getUsername();
@@ -27,63 +27,47 @@ public class UserValidation {
 		String city = user.getCity();
 		String state = user.getState();
 		String country = user.getCountry();
-		int mobile = user.getMobile();
-		
-		if(name.equals("") || name == null) {
+		String mobile = user.getMobile();
+
+		if (name.equals("") || name == null) {
 			validity = "Name is mandatory field. Please enter your correct name";
-		}
-		else if(age < 1) {
+		} else if (age < 1) {
 			validity = "Age is mandatory field. Please enter your correct age";
-		}
-		else if(username.equals("") || username == null) {
+		} else if (username.equals("") || username == null) {
 			validity = "Username is mandatory field. Please enter your correct username/email";
-		}
-		else if(doesUsernameExists(username)) {
+		} else if (doesUsernameExists(username)) {
 			validity = "Username already exists. Please enter unique username/email";
-		}
-		else if(password.equals("") || password == null) {
+		} else if (password.equals("") || password == null) {
 			validity = "Password is mandatory field. Please enter your correct password";
-		}
-		else if(confirmPassword.equals("") || confirmPassword == null) {
+		} else if (confirmPassword.equals("") || confirmPassword == null) {
 			validity = "Confirm Password is mandatory field. Please enter the same password as you entered in the previous field.";
-		}
-		else if(!confirmPassword.equals(password)) {
+		} else if (!confirmPassword.equals(password)) {
 			validity = "Confirm Password and Password don't match. Please enter the same password as you entered in the previous field.";
-		}
-		else if(profession.equals("") || profession == null) {
+		} else if (profession.equals("") || profession == null) {
 			validity = "Profession is mandatory field. Please enter your profession";
-		}
-		else if(address.equals("") || address == null) {
+		} else if (address.equals("") || address == null) {
 			validity = "Address is mandatory field. Please enter your correct address";
-		}
-		else if(city.equals("") || city == null) {
+		} else if (city.equals("") || city == null) {
 			validity = "City is mandatory field. Please enter the correct city";
-		}
-		else if(state.equals("") || state == null) {
+		} else if (state.equals("") || state == null) {
 			validity = "State is mandatory field. Please enter the correct state";
-		}
-		else if(country.equals("") || country == null) {
+		} else if (country.equals("") || country == null) {
 			validity = "Country is mandatory field. Please enter the correct country";
-		}
-		else if(mobile < 9999 || mobile > 99999) {
-			validity = "Mobile contact is mandatory field. Please enter the correct 5 digit mobile number.";
-		}
-		else {
+		} else if (mobile.equals("")) {
+			validity = "Mobile contact is mandatory field. Please enter the correct mobile number.";
+		} else {
 			validity = "success";
 		}
-		
+
 		return validity;
 	}
 
 	public boolean doesUsernameExists(String username) {
-		Optional<User> user  = userRepository.findById(username);
-		if(user != null && !user.isEmpty()) {
-			System.out.println(user);
+		Optional<User> user = userRepository.findById(username);
+		if (user != null && !user.isEmpty()) {
 			return true;
 		}
-//		System.out.println(user);
 		return false;
 	}
-	
-	
+
 }

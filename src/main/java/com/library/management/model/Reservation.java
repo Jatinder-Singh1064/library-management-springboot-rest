@@ -14,7 +14,6 @@ import lombok.Data;
 //For setter and getter methods
 @Data
 public class Reservation {
-	
 	// Primary key
 	@Id
 	
@@ -23,7 +22,7 @@ public class Reservation {
 	private int transactionId;
 	
 	private String username;
-	private String resourceId;
+	private int resourceId;
 	
 	private String borrowDate;
 	private String returnDate;
@@ -31,14 +30,27 @@ public class Reservation {
 	private double fine;
 	private String whoReserved;
 	
-//	@Transient
-//	private String isbnRequested;
-//	
-//	public Reservation(String username, String isbnRequested){
-//		this.username = username;
-//		this.isbnRequested = isbnRequested;
-//	}
+	@Transient
+	private String isbn;
 	
+	@Transient
+	private String title;
 	
+	@Transient
+	private String category;
 	
+	@Transient
+	private String author;
+	
+	@Transient
+	private String publisher;
+	
+	@Transient
+	private int	pageCount;
+	
+	@Transient
+	private String formattedBorrowDate;
+	
+	@Transient
+	private String	formattedReturnDate;
 }

@@ -22,14 +22,13 @@ public class AdminController {
 	@Autowired
 	private ReservationService reservationService;
 	
-	
+	static String message= "";
 
 	@GetMapping("/admin/books")
 	public String getBooks(Model model) {
 		List<Book> books = bookService.getAllBooks();
-		Book book = new Book();
-		model.addAttribute("book",book);
 		model.addAttribute("books", books);
+		model.addAttribute("message", message);
 		model.addAttribute("username", HomeController.username);
 		if(HomeController.username.equals(""))
 			return "redirect:/";
@@ -49,9 +48,7 @@ public class AdminController {
 
 	@GetMapping("/admin/reservations")
 	public String getAllReservations(Model model) {
-		List<Reservation> reservations = reservationService.getAllReservations();
-//		Book book = new Book();
-//		model.addAttribute("book",book);
+		List<Reservation> reservations = reservationService.getPendingReservations();
 		model.addAttribute("reservations", reservations);
 		model.addAttribute("username", HomeController.username);
 		if(HomeController.username.equals(""))

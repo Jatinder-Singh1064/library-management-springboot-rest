@@ -1,7 +1,5 @@
 package com.library.management.service;
 
-
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,9 +15,11 @@ import com.library.management.repository.BookRepository;
 @Service
 public class BookService {
 
-
 	@Autowired
 	private BookRepository bookRepository;
+	
+	@Autowired
+	private ReservationService reservationService;
 	
 //		Method for getting all the students
 	public List<Book> getAllBooks() {
@@ -37,33 +37,28 @@ public class BookService {
 	// 	Method for adding a student into database
 	public void addBook(Book book) {
 		bookRepository.save(book);
+		
 	}
 	
-	//	Method for updating student into database (only if it exists)
-//	public Student updateStudent(String id, Student student) {
-//		Optional<Student> student1  = studentRepository.findById(id);
-//		if(student1 != null) {
-//			studentRepository.save(student);
-//		}
-//		Optional<Student> student2 = studentRepository.findById(id);
-//		return student2.orElseGet(null);
-//	}
-//	
 	//	Deleting a book by id
-	public void deleteBook(int id) {
-		bookRepository.deleteById(id);
+	public String deleteBook(int id) {
+		if(!reservationService.isBookReserved(id)){
+			bookRepository.deleteById(id);
+			return "Book is deleted successfully";
+		}
+		return "Book can not be removed beacuse it is issued to the user.";
+		
 	}
 
-	public void updateBookById(Book updatedBook) {
-		// TODO Auto-generated method stub
-//		int resourceId = updatedBook.getResourceId();
-		
-		bookRepository.save(updatedBook);
-		
+	public String updateBookById(Book updatedBook) {
+		if(!reservationService.isBookReserved(updatedBook.getResourceId())){
+			bookRepository.save(updatedBook);
+			return "Book is updated successfully";
+		}
+		return "Book can not be updated beacuse it is issued to the user.";
 	}
 
 	public List<Book> findRelatedBooks(Book book) {
-		// TODO Auto-generated method stub
 		HashSet<Book> relatedBooks = new HashSet<>();
 		List<Book> books = getAllBooks();
 		for(Book b:books) {
@@ -86,5 +81,4 @@ public class BookService {
 		List<Book> relatedAllBooks = (ArrayList<Book>)relatedBooks.stream().collect(Collectors.toList());
 		return relatedAllBooks;
 	}
-
 }

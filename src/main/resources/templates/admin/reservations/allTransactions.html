@@ -24,18 +24,21 @@
 					<th>Username</th>
 					<th>Resource Id</th>
 					<th>Borrow date</th>
+					<th>Return date</th>
 					<th>Who Reserved</th>
-					<th>Action</th>
 				</tr>
 				<tr th:each="reservation: ${reservations}">
 					<td th:text="${reservation.transactionId}" />
 					<td th:text="${reservation.username}" />
 					<td th:text="${reservation.resourceId}" />
 					<td th:text="${reservation.borrowDate}" />
+					<span th:if="${reservation.returnDate == null}">
+						<td class= "pending-status">Pending</td>
+					</span>
+					<span th:unless="${reservation.returnDate == null}">
+					<td th:text="${reservation.returnDate}" />
+					</span>
 					<td th:text="${reservation.WhoReserved}" />
-					<td class="delete-link"><a
-							th:href="|reservations/deleteReservation?transactionId=${reservation.transactionId}|">Delete
-					</td>
 				</tr>
 			</table>
 			<br>

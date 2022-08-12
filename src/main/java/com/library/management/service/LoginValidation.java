@@ -37,7 +37,6 @@ public class LoginValidation {
 		else {
 			validity = "success";
 		}
-		
 		return validity;
 	}
 
@@ -60,9 +59,7 @@ public class LoginValidation {
 		return false;
 	}
 	
-
 	public String getUserType(User user) {
 		return userType;
 	}
-	
 }
